@@ -2,6 +2,7 @@ import React, {useState, useEffect, useInterval} from 'react';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "../App.css";
+
 //post score to backend - and the answer to each question
 //post transcript to backend, then clear the string with reset
 let Speak = (props) => {
@@ -77,6 +78,9 @@ let Speak = (props) => {
     .then((gameJoinPOJO)=>{
         console.log('this is the Game Join POJO')
     })
+   
+  
+
 return resetTranscript
 }
 
@@ -99,6 +103,7 @@ return resetTranscript
               setTranscript(finalTranscript)
               countWordTest(finalTranscript, keyPhrase, tempTerm)
               //resetTranscript - this is where i will reset once post.
+            
               console.log(finalTranscript, "this is final transcript")
               console.log("final trans is", finalTrans)
             }
@@ -187,6 +192,7 @@ let handleStop = () => {
 
 
 let nextQuestion = () => {
+resetTranscript()
 setQIdx((prevState) => { return prevState + 1})
 setSeconds(10)
 // setIsActive(false)
@@ -199,7 +205,9 @@ let questArrMapper = quests.map((q, idx) => {
     if (idx === questIdx){    
         return q.content
     }  
- 
+    if (questIdx > idx){
+     return null
+    }
 })
 
 

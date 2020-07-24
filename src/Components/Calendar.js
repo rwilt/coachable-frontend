@@ -28,7 +28,7 @@ console.log(props.calendar[0])
             <ol>
                
             <h5>{props.calendar[0].company}</h5>
-            <p>{props.calendar[0].date.slice(0,10)}</p> 
+            <p>{props.calendar[0].simple_date}</p> 
             <p>{props.calendar[0].title}</p>        
             <p>{props.calendar[0].interviewer}</p>
             <p>{props.calendar[0].note}</p>
