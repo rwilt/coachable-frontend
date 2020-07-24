@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+/* 
+ <------ STYLING NOTES -------> 
+why does my nav-div not go the length of the page?
+change nav to be top nav - dont have everything as one color backgroud.
+i feel like i should have the login/log out be at the top of the app with the nav and slogan. 
+look at headspace/duolingo or other sites for reference. a login page to a website isnt really done anymore, maybe unless
+it looks more -game- like from the beginning */
+
+body{
+  margin-bottom: 0;
+  /* background-color: #E9FAE3; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* 
+Other background color options:
+#E9FAE3 -- light teal 
+#06acdb -- darker blue 
+#7ad1f5 -- lighter blue*/
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.overall-contain{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  min-height: 100%;
+  margin-top: 2%;
+  background-color: #E9FAE3;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.nav-div{
+  width: 35%;
+  margin-left: 2%;
+  height: auto;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+
+  .train-div{
+    margin-top: 5%;
+  }
+
+.nav-div a {
+  
+  font-size: 60px;
+  color: #403e44;
+  text-shadow: 3px 5px white;
+}
+
+.welcome-div{
+flex-grow: 1;
+font-size: 3vh;
+color:#403e44;
+/* flex-direction: row; */
+align-items: center;
+justify-content: center;
+text-align: center;
+text-shadow: 1px 4px white;
+}
+
+img{
+  max-width: 60vh;
+}
+
+p{
+  text-shadow: 1px 2px gray;
+  font-size: 40px;
+}
+
+
+.about{
+  position: fixed;
+  bottom: 0;
+  margin: 0 5px 0 0;
+  right: 0;
+  color: #403e44;
+  text-align: right;
+
+}
+
+a{
+  text-decoration: none;
+}
+/* a:visited{
+  color: silver;
+} */
+
+.about > p{
+font-size: 20px;
+text-shadow: none;
+}
+
+#timer{
+  font-size: 120px;
+  text-shadow: 2px 2px tomato;
+
+}
+
+#timer.warning{
+  -webkit-animation: bounce .1s  ease infinite alternate-reverse ;
+  animation: bounce .4s  ease infinite alternate-reverse ;
+}
+
+@-webkit-keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 tomato,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 tomato,
+                 0 5px 0 tomato,
+                 0 6px 0 tomato,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 tomato,
+0 10px 0 #CCC,
+               0 11px 0 tomato,
+               0 12px 0 tomato,
+               0 13px 0 tomato,
+   0 14px 0 #CCC,
+               0 15px 0 tomato,
+                 0 50px 25px rgba(0, 0, 0, .2);
+  }
+}
+ 
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 tomato,
+                 0 2px 0 tomato,
+                 0 3px 0 tomato,
+                 0 4px 0 tomato,
+                 0 5px 0 tomato,
+                 0 6px 0 tomato,
+                 0 7px 0 tomato,
+                 0 8px 0 tomato,
+                 0 9px 0 tomato,
+  0 10px 0 #CCC,
+               0 11px 0 #CCC,
+               0 12px 0 #CCC,
+               0 13px 0 #CCC,
+   0 14px 0 #CCC,
+               0 15px 0 #CCC,
+                 0 50px 25px rgba(0, 0, 0, .2);
   }
 }
