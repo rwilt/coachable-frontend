@@ -4,7 +4,7 @@ import GameStart from "./GameStart";
 import present from "../photos/presentation1.png";
 
 let Train = (props) => {
-
+console.log(props.currentGame)
     let [startTrain, setStart] = useState(false)
     const [currentGame, setCurrentGame] = useState([])
 

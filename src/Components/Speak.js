@@ -5,7 +5,7 @@ import "../App.css";
 //post score to backend - and the answer to each question
 //post transcript to backend, then clear the string with reset
 let Speak = (props) => {
-    
+
     //index of the current question to show
     let [questIdx, setQIdx] = useState(0)
     //final transcript of what the user said
@@ -72,16 +72,17 @@ let Speak = (props) => {
     }) // end of for each
     fetch("http://localhost:3000/game_joins", {method: "POST",
     headers: {"content-type" : "application/json"},
-    body: JSON.stringify({game_id: props.game_id, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: "hello" })
+    body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: "hello" })
     })
     .then(resp => resp.json())
     .then((gameJoinPOJO)=>{
         console.log('this is the Game Join POJO')
     })
-
+return resetTranscript
 }
 
-      let startTimer = useEffect(() => {  
+      let startTimer = useEffect(() => { 
+  
             let interval = null;       
               
             if (isActive) {
