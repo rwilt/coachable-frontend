@@ -23,8 +23,8 @@ let Nav = (props) => {
             <h2>Train</h2>
         </NavLink>
           
-        <NavLink to="/history" exact>
-         <h2>History</h2>
+        <NavLink to="/scoreboard" exact>
+         <h2>Scoreboard</h2>
         </NavLink>
 
         <NavLink to="/search" exact>

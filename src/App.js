@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Nav from "./Components/Nav"
 import Train from "./Components/Train"
 import Welcome from "./Components/Welcome"
-import History from "./Components/History"
+import Scoreboard from "./Components/Scoreboard"
 import Logout from "./Components/Logout"
 import Profile from "./Components/Profile"
 import Search from "./Components/Search"
@@ -18,16 +18,16 @@ let [clicked, setClicked] = useState(false)
 let [gameList, setGameList] = useState([])
 let [userInfo, setUserInfo] = useState([])
 let [interviewList, setInterviews] = useState([])
-
-
+let [finalScoreArray, setFS] = useState([])
 
 useEffect(()=>{
   fetch("http://localhost:3000/users/")
   .then(resp => resp.json())
   .then((userPOJO)=>{
     setUserInfo(userPOJO[0])
-    // setInterviews(userPOJO[0].interviews)
-    setGameList(userPOJO[0].game_joins)
+    setInterviews(userPOJO[0].interviews)
+    setGameList(userPOJO[0].games)
+    
   })
 
 },[])
@@ -53,14 +53,20 @@ fetch("http://localhost:3000/users")
 
     <div className="overall-contain">
 
-    <div>
+   
+<div>
       <Nav
       />
     </div>
-   
    <Switch>
-     <Route path="/train" component={Train}/>
-     <Route path="/history" component={History}/>
+     <Route path="/train">
+       <Train/>
+     </Route>
+
+     <Route path="/scoreboard">
+     <Scoreboard gameList={gameList}
+     />
+     </Route>
      <Route path="/search" component={Search}/>
      <Route path="/calendar">
        <Calendar calendar={interviewList}/>
@@ -78,7 +84,7 @@ fetch("http://localhost:3000/users")
      interviews={interviewList}/>
     </Switch>
    
-   {/* this is to render site credits: */}
+ 
       <div className="about">
       {
       clicked ? 

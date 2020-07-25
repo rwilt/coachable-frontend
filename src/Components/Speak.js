@@ -6,6 +6,7 @@ import "../App.css";
 //post score to backend - and the answer to each question
 //post transcript to backend, then clear the string with reset
 let Speak = (props) => {
+
     //index of the current question to show
     let [questIdx, setQIdx] = useState(0)
     //final transcript of what the user said
@@ -23,7 +24,7 @@ let Speak = (props) => {
     //final results - "You said X key words. You used x filler words. etc. "
     let [finalResults, setResult] = useState('')
     //timer logic - how many seconds does the user start with
-    const [seconds, setSeconds] = useState(15);
+    const [seconds, setSeconds] = useState(5);
     //is the game currently in play? 
     const [isActive, setIsActive] = useState(false);
     //word count logic - the key words and how many times each was used
@@ -32,9 +33,12 @@ let Speak = (props) => {
     const { interimTranscript, transcript, finalTranscript, resetTranscript, listening} = useSpeechRecognition()
     //termObject
     let [termObj, setTermObj] = useState({})
+    //finalfinal score
+    let [finalScore, setFinalScore] = useState(0)
+    let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "sort of", "sorta"])
     
     
-    let tempTerm = {} 
+  
 
     let handleStart = () => {   
   
@@ -47,16 +51,34 @@ let Speak = (props) => {
         return startTimer  
         }
 
-          //count MULTIPLE WORDS
 
-   // || searchTerms.includes(word[0].toUpperCase() + word.slice(1)
+   let fillerCount = (str, searchTerms) => {  
+    let tempScore = 0
 
+        str.split(" ").forEach((word) => {
+        if (searchTerms.includes(word)){
+                // theScore -= 10
+                // endScore  -= 10
+                console.log("you said", word)
+                // setFinalScore((prevState) => {return prevState + endScore})
+        }
+        // setScore(theScore)  
+            
+      })
+
+    }
+
+
+
+    let tempTerm = {} 
     let countWordTest = (str, searchTerms, tempTerm) => {  
         let theScore = 0
+        let endScore = 0
             str.split(" ").forEach((word) => {
-            
-            if (searchTerms.includes(word) || searchTerms.includes(word[0].toUpperCase() + word.slice(1))){
+            console.log(word)
+            if (searchTerms.includes(word)){
                     theScore += 10
+                    endScore  += 10
                     // useEffect = () => {
                     // fetch("http://localhost:3000/game_joins", {method: "POST",
                     // headers: {"Content-Type" : "application/json"},
@@ -66,9 +88,10 @@ let Speak = (props) => {
                     //     console.log('this is the Game Join POJO')
                     // })
                     // .then(setScore(0))
-                console.log("your score is", theScore)
+                    setFinalScore((prevState) => {return prevState + endScore})
             }
             setScore(theScore)  
+                
     }) // end of for each
     fetch("http://localhost:3000/game_joins", {method: "POST",
     headers: {"content-type" : "application/json"},
@@ -78,7 +101,8 @@ let Speak = (props) => {
     .then((gameJoinPOJO)=>{
         console.log('this is the Game Join POJO')
     })
-   
+
+ 
   
 
 return resetTranscript
@@ -133,7 +157,7 @@ fetch('http://localhost:3000/users/')
 
 
 useEffect(()=> {
-    fetch('http://localhost:3000/games')
+    fetch('http://localhost:3000/users')
     .then(resp => resp.json())
     .then((arrayOfStuff)=>{
         setKeyPhrases(arrayOfStuff[0].key_phrases[0].phrases)
@@ -142,7 +166,7 @@ useEffect(()=> {
     }, [])
 
  
-
+ 
 
  
 // console.log(quests, "questions")
@@ -167,13 +191,6 @@ if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
   return null
 }
 
-    let fillerCount = () => {
-        if (finalTranscript.includes("like")){
-            console.log('you said like!')
-        }
-    }
-
-
 
      
 
@@ -191,23 +208,46 @@ let handleStop = () => {
 }
 
 
-let nextQuestion = () => {
+let nextQuestion = (e) => {
+e.preventDefault()
 resetTranscript()
+setSeconds(5)
 setQIdx((prevState) => { return prevState + 1})
-setSeconds(10)
+console.log(questIdx)
+if (questIdx >= 4) {
+endGame()
+}
 // setIsActive(false)
 // setGame(false)
 }
 
+let endGame = () => {
 
+setIsActive(false)
+if (!isActive){
+  console.log("hey")
+  console.log("the  game id is" , props.gameId) 
+}
+  fetch(`http://localhost:3000/games/${props.gameId}`, {
+  method: "PATCH",
+  headers: {
+  "Content-Type": "application/json"},
+  body: JSON.stringify({final_score: finalScore})
+})
+.then(resp => resp.json())
+.then((scorePOJO) => {
+  console.log(scorePOJO)
+})
+
+
+
+}
 
 let questArrMapper = quests.map((q, idx) => {  
     if (idx === questIdx){    
         return q.content
     }  
-    if (questIdx > idx){
-     return null
-    }
+
 })
 
 
@@ -228,10 +268,14 @@ return (
     {/* <p>{interimTranscript}</p> */}
 
     {/* <h1>Keywords: {wordCount}</h1> */}
-    <h1>Current Score: {score}</h1>
-    {/* {gameOver ? <p>GAME OVER!</p> : <p>Game in Progress</p>} */}
-    {isActive ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT QUESTION</button>}
-  </div>
+    <h1>Question Score: {score}</h1>
+    <h1>final score: {finalScore}</h1>
+    {questIdx  >= 4 ? <p>GAME OVER!</p> : <p>Game in Progress</p>}
+
+    {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
+    isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT QUESTION</button>
+    }
+    </div>
 )
 }
 

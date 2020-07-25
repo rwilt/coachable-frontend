@@ -18,18 +18,18 @@ Other background color options:
 #7ad1f5 -- lighter blue*/
 
 .overall-contain{
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
   min-height: 100%;
-  margin-top: 2%;
+  margin-top: 0;
   background-color: #E9FAE3;
 }
 
 .nav-div{
-  width: 35%;
-  margin-left: 2%;
-  height: auto;
-
+  margin-top: 0;
+  overflow: hidden;
+  /* border: 1px solid black; */
+  background-color: white;
   }
 
   .train-div{
@@ -37,14 +37,22 @@ Other background color options:
   }
 
 .nav-div a {
-  
-  font-size: 60px;
+  display: block;
+  float: left;
+  padding: 10px;
+  margin-left: 200px;
+  font-size: 30px;
   color: #403e44;
+  
   text-shadow: 3px 5px white;
 }
 
+#score{
+  font-size: 40px;
+}
+
 .welcome-div{
-flex-grow: 1;
+/* flex-grow: 1; */
 font-size: 3vh;
 color:#403e44;
 /* flex-direction: row; */
@@ -52,10 +60,16 @@ align-items: center;
 justify-content: center;
 text-align: center;
 text-shadow: 1px 4px white;
+height: 1000vh;
 }
 
 img{
   max-width: 60vh;
+}
+
+.trophy-pic{
+max-height: 40vh;
+padding: 40px;
 }
 
 p{
@@ -67,7 +81,7 @@ p{
 .about{
   position: fixed;
   bottom: 0;
-  margin: 0 5px 0 0;
+  margin: 0 15px 0 0;
   right: 0;
   color: #403e44;
   text-align: right;

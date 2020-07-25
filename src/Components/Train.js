@@ -4,11 +4,12 @@ import GameStart from "./GameStart";
 import present from "../photos/presentation1.png";
 
 let Train = (props) => {
-console.log(props.currentGame)
+console.log(props.currentGame, "is current game")
     let [startTrain, setStart] = useState(false)
     const [currentGame, setCurrentGame] = useState([])
 
 let handleClick = (e) => {
+    
     setStart((prevState) => {return !prevState})
 
     fetch("http://localhost:3000/games", {method:
@@ -33,7 +34,7 @@ return (
    
     :
     <div className="game-div">
-    
+     <audio src="./assets/sound.mp3" controls autoPlay/>
    <img src={present}/>
     <p>When you press start, the game will begin.
     <br/>
