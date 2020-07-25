@@ -80,8 +80,10 @@ fetch("http://localhost:3000/users")
        interviews={interviewList}
        />
      </Route> 
-     <Welcome
-     interviews={interviewList}/>
+
+    <p>Homepage With Info About the Damn App</p>
+     {/* <Welcome
+     interviews={interviewList}/> */}
     </Switch>
    
  

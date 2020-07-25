@@ -35,7 +35,7 @@ let Speak = (props) => {
     let [termObj, setTermObj] = useState({})
     //finalfinal score
     let [finalScore, setFinalScore] = useState(0)
-    let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "sort of", "sorta"])
+    let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "sort of", "sorta", "a lot"])
     
     
   
@@ -53,13 +53,15 @@ let Speak = (props) => {
 
 
    let fillerCount = (str, searchTerms) => {  
-    let tempScore = 0
-
+    let theScore = 0
+    let endScore = 0
         str.split(" ").forEach((word) => {
         if (searchTerms.includes(word)){
+          setScore((prevState) => {return prevState - 10})
+          setFinalScore((prevState) => {return prevState - 10})
                 // theScore -= 10
                 // endScore  -= 10
-                console.log("you said", word)
+                // console.log("you said", word)
                 // setFinalScore((prevState) => {return prevState + endScore})
         }
         // setScore(theScore)  
@@ -77,8 +79,11 @@ let Speak = (props) => {
             str.split(" ").forEach((word) => {
             console.log(word)
             if (searchTerms.includes(word)){
-                    theScore += 10
-                    endScore  += 10
+                    // theScore += 10
+                    // endScore  += 10
+
+                    setScore((prevState) => {return prevState + 10})
+                    setFinalScore((prevState) => {return prevState + 10})
                     // useEffect = () => {
                     // fetch("http://localhost:3000/game_joins", {method: "POST",
                     // headers: {"Content-Type" : "application/json"},
@@ -88,19 +93,19 @@ let Speak = (props) => {
                     //     console.log('this is the Game Join POJO')
                     // })
                     // .then(setScore(0))
-                    setFinalScore((prevState) => {return prevState + endScore})
+                    // setFinalScore((prevState) => {return prevState + endScore})
             }
-            setScore(theScore)  
+            // setScore((prevState) => {return prevState + theScore})  
                 
     }) // end of for each
-    fetch("http://localhost:3000/game_joins", {method: "POST",
-    headers: {"content-type" : "application/json"},
-    body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: "hello" })
-    })
-    .then(resp => resp.json())
-    .then((gameJoinPOJO)=>{
-        console.log('this is the Game Join POJO')
-    })
+    // fetch("http://localhost:3000/game_joins", {method: "POST",
+    // headers: {"content-type" : "application/json"},
+    // body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: "hello" })
+    // })
+    // .then(resp => resp.json())
+    // .then((gameJoinPOJO)=>{
+    //     console.log('this is the Game Join POJO')
+    // })
 
  
   
@@ -126,6 +131,9 @@ return resetTranscript
               SpeechRecognition.stopListening()
               setTranscript(finalTranscript)
               countWordTest(finalTranscript, keyPhrase, tempTerm)
+              
+              fillerCount(finalTranscript, fillerWords)
+        
               //resetTranscript - this is where i will reset once post.
             
               console.log(finalTranscript, "this is final transcript")
@@ -212,6 +220,7 @@ let nextQuestion = (e) => {
 e.preventDefault()
 resetTranscript()
 setSeconds(5)
+setScore(0)
 setQIdx((prevState) => { return prevState + 1})
 console.log(questIdx)
 if (questIdx >= 4) {
