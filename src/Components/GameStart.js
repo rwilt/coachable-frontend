@@ -4,12 +4,13 @@ import "../App.css";
 let GameStart = (props) => {
 
     return (
-        <div>
+        // <div className="welcome-div">
+        <div className="game-div">
       
            <Speak
            gameId={props.currentGame}/>
-         
-        </div>
+         </div>
+        // </div>
     )
 
 }

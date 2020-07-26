@@ -5,12 +5,131 @@ change nav to be top nav - dont have everything as one color backgroud.
 i feel like i should have the login/log out be at the top of the app with the nav and slogan. 
 look at headspace/duolingo or other sites for reference. a login page to a website isnt really done anymore, maybe unless
 it looks more -game- like from the beginning */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Montserrat:wght@300;400&display=swap');
 
 body{
   margin-bottom: 0;
   /* background-color: #E9FAE3; */
 }
 
+#logo{
+  color: #10294b;
+  font-family: 'Bungee Shade', cursive;
+  font-size: 150px;
+}
+
+
+.game-div{
+  /* background-image: url("./photos/office.jpg"); */
+  background-color: hsl(0, 0%, 100%);
+  background-size: cover;
+  background-blend-mode: lighten;
+  padding: 100px;
+  border: 5px solid black;
+  border-radius: 25px;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1%;
+}
+
+.game-div h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+}
+
+#color{
+  background-color: rgb(255, 255, 255, .6);
+}
+
+
+
+.speak-div{
+display: flex;
+
+}
+
+.welcome-col{
+  margin-top: 3%;
+  display: flex;
+  padding: 60px
+}
+
+.col-1{
+flex: 70%;
+padding:0 ;
+}
+
+.col-2{
+flex: 50%;
+padding: 0;
+}
+
+#subhead{
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+  color: #10294b;
+}
+
+#tagline{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 200 bold;
+  text-shadow: none;
+  color: #10294b;
+}
+
+
+.clm-1{
+flex: 90%;
+}
+
+.clm-1 h1{
+  margin: 0;
+}
+
+
+.clm-2{
+flex: 10%;
+}
+
+
+.clm-2 #key-phrase{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.clm-2 #filler-word{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+
+.btn-div{
+  align-items: center;
+
+}
+
+.btn-div button{
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 50px;
+  font-weight: bold;
+  color: tomato;
+  border: 1px solid silver;
+  background-color: rgb(208, 236, 193, .9);
+  font-family: 'Bungee Shade', cursive;
+}
+
+.btn-div button:hover{
+  background-color: rgb(208, 236, 193, .4);
+  font-style: italic;
+}
 /* 
 Other background color options:
 #E9FAE3 -- light teal 
@@ -30,6 +149,13 @@ Other background color options:
   overflow: hidden;
   /* border: 1px solid black; */
   background-color: white;
+  font-family: 'Montserrat', sans-serif;
+
+
+  }
+
+  .trainer{
+    max-height:1000px;
   }
 
   .train-div{
@@ -41,10 +167,16 @@ Other background color options:
   float: left;
   padding: 10px;
   margin-left: 200px;
-  font-size: 30px;
-  color: #403e44;
+  font-size: 40px;
+  color: #10294b;
+  font-weight: bold;
+ 
+}
+
+.nav-div a:hover{
+  color: #10294b;
+  text-decoration: underline;
   
-  text-shadow: 3px 5px white;
 }
 
 #score{
@@ -53,9 +185,9 @@ Other background color options:
 
 .welcome-div{
 /* flex-grow: 1; */
-font-size: 3vh;
+font-size: 40px;
 color:#403e44;
-/* flex-direction: row; */
+font-family: 'Montserrat', sans-serif;
 align-items: center;
 justify-content: center;
 text-align: center;
@@ -63,9 +195,38 @@ text-shadow: 1px 4px white;
 height: 1000vh;
 }
 
+.welcome-div p {
+  font-weight: bold;
+  font-size: 50px;
+}
+
 img{
   max-width: 60vh;
 }
+
+.audio{
+ position: fixed;
+ bottom: 5px;
+}
+
+.quiz-btn{
+border: 0;
+background-color: tomato;
+color: rgb(255, 255, 0, 0.6);
+border-radius: 25px;
+padding: 30px;
+font-size: 60px;
+font-weight: bold;
+font-family: 'Bungee Shade', cursive;
+}
+
+.quiz-btn:hover{
+  -webkit-transform:  scale(1.2);
+  -ms-transform: scale(1.2);
+  transform:  scale(1.3);
+  color: rgb(255, 255, 0, 0.6)
+}
+
 
 .trophy-pic{
 max-height: 40vh;
@@ -101,8 +262,9 @@ text-shadow: none;
 }
 
 #timer{
-  font-size: 120px;
-  text-shadow: 2px 2px tomato;
+  font-family: 'Bungee Shade', cursive;
+  font-size: 300px;
+  text-shadow: 2px 5px tomato;
 
 }
 
@@ -142,9 +304,11 @@ text-shadow: none;
                  0 4px 0 tomato,
                  0 5px 0 tomato,
                  0 6px 0 tomato,
-                 0 7px 0 tomato,
-                 0 8px 0 tomato,
-                 0 9px 0 tomato,
+                 0 7px 0 #FFEE93,
+                 0 8px 0 #FFEE93,
+                 0 9px 0 #FFEE93,
+                 0 10px 0 #FFEE93,
+                 0 11px 0 #FFEE93,
   0 10px 0 #CCC,
                0 11px 0 #CCC,
                0 12px 0 #CCC,
@@ -153,4 +317,27 @@ text-shadow: none;
                0 15px 0 #CCC,
                  0 50px 25px rgba(0, 0, 0, .2);
   }
+}
+
+
+.button-div{
+  align-items: center;
+
+}
+
+.button-div button{
+  margin: 10px;
+  padding: 25px;
+  border-radius: 25px;
+  font-size: 60px;
+  font-weight: bold;
+  color: #f04e22;
+  border: none;
+  background-color: rgb(254, 184, 19, .9);
+  font-family: 'Bungee Shade', cursive;
+}
+
+.button-div button:hover{
+  background-color: rgb(254, 184, 19, .5);
+  font-style: italic;
 }

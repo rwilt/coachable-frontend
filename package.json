@@ -9,6 +9,7 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.12.1",
     "node-record-lpcm16": "^1.0.1",
     "react": "^16.8.0",
+    "react-audio-player": "^0.13.0",
     "react-dom": "^16.13.1",
     "react-native-watson": "^1.6.2",
     "react-scripts": "3.4.1",

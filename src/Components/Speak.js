@@ -24,7 +24,7 @@ let Speak = (props) => {
     //final results - "You said X key words. You used x filler words. etc. "
     let [finalResults, setResult] = useState('')
     //timer logic - how many seconds does the user start with
-    const [seconds, setSeconds] = useState(5);
+    const [seconds, setSeconds] = useState(12);
     //is the game currently in play? 
     const [isActive, setIsActive] = useState(false);
     //word count logic - the key words and how many times each was used
@@ -130,9 +130,10 @@ return resetTranscript
               setIsActive(false)
               SpeechRecognition.stopListening()
               setTranscript(finalTranscript)
+              fillerCount(finalTranscript, fillerWords)
               countWordTest(finalTranscript, keyPhrase, tempTerm)
               
-              fillerCount(finalTranscript, fillerWords)
+              
         
               //resetTranscript - this is where i will reset once post.
             
@@ -261,10 +262,19 @@ let questArrMapper = quests.map((q, idx) => {
 
 
 return (
-  <div>
+  <div className="game-div-2">
+  <div className="speak-div">
       {/* dont show first question until start is clicked */}
-      <p>{questArrMapper}</p>
-    <button onClick={handleStart}>Start</button>
+    <div className="clm-1">
+    
+    <div className="btn-div">
+    <p>{questArrMapper}</p>
+    <button onClick={handleStart}><img src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
+    <br></br>
+    {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
+    isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT</button>
+    }
+    </div>
     {/* <button onClick={handleStop}>Stop</button>
     <button onClick={resetTranscript}>Reset</button>
    */}
@@ -277,13 +287,49 @@ return (
     {/* <p>{interimTranscript}</p> */}
 
     {/* <h1>Keywords: {wordCount}</h1> */}
-    <h1>Question Score: {score}</h1>
-    <h1>final score: {finalScore}</h1>
-    {questIdx  >= 4 ? <p>GAME OVER!</p> : <p>Game in Progress</p>}
 
-    {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
-    isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT QUESTION</button>
-    }
+    {score < 0 ? 
+    <p>Question Score: 0</p> 
+    :  
+    <p>Question Score: {score}</p>}
+
+    { finalScore < 0 ? 
+    <p>Final Score: 0 </p> 
+    : 
+    <p>Final Score: {finalScore} </p>}
+    
+    </div>
+   
+
+    <div clasName="clm-2">
+    <h2 id="key-phrase">KEY PHRASES:</h2>
+    <h3>{keyPhrase.map((p)=> {
+      if (keyPhrase.indexOf(p) < keyPhrase.length -1){
+      return p + ", "
+      }
+      else {
+        return p + " "
+      }
+      })
+      }</h3>
+
+    
+    <h2 id="filler-word">FILLER WORDS:</h2>
+    <h3>
+    {fillerWords.map((w,idx) => {
+      if (fillerWords.indexOf(w)  < fillerWords.length - 1){
+      return w + ", " }
+      else {
+        return w + " "
+      }
+
+    })
+    }</h3>
+
+    {questIdx  >= 4 ? <p>GAME OVER!</p> : <p>Game in Progress</p>}
+    </div>
+   
+    </div>
     </div>
 )
 }

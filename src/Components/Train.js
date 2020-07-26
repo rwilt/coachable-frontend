@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import "../App.css";
 import GameStart from "./GameStart";
 import present from "../photos/presentation1.png";
+import ReactAudioPlayer from 'react-audio-player';
+import Music from "../photos/POL-follow-me-short.wav";
+import Interview from "../photos/shakinghands.png"
 
 let Train = (props) => {
 console.log(props.currentGame, "is current game")
     let [startTrain, setStart] = useState(false)
     const [currentGame, setCurrentGame] = useState([])
-
+    
 let handleClick = (e) => {
     
     setStart((prevState) => {return !prevState})
 
-    fetch("http://localhost:3000/games", {method:
-        "POST", 
-        headers: {"Content-Type": "application/JSON"},
-        body: JSON.stringify( {user_id: 11})    
-        }
-        ).then(resp => resp.json())
-        .then((currentGame)=>{
-            console.log(currentGame)
-            setCurrentGame(currentGame.id)
-        }
-        )
+    // fetch("http://localhost:3000/games", {method:
+    //     "POST", 
+    //     headers: {"Content-Type": "application/JSON"},
+    //     body: JSON.stringify( {user_id: 11})    
+    //     }
+    //     ).then(resp => resp.json())
+    //     .then((currentGame)=>{
+    //         console.log(currentGame)
+    //         setCurrentGame(currentGame.id)
+    //     }
+    //     )
 }
 
 return (
@@ -34,16 +37,23 @@ return (
    
     :
     <div className="game-div">
-     <audio src="./assets/sound.mp3" controls autoPlay/>
-   <img src={present}/>
-    <p>When you press start, the game will begin.
-    <br/>
-    Answer the questions  before the timer runs out! 
-    <br/>
-    Remember to include your key words in your answers if you have entered them.
-    <br/>
-    Filler words will take down your score!</p>
-    <button onClick={handleClick}>QUIZ ME!</button>
+ <ReactAudioPlayer
+ volume= "10"
+  className="audio"
+  src={Music}
+  
+//   autoPlay
+  loop 
+  controls />
+    
+    <div id="color">
+   <img className="trainer" src={Interview}/>
+   </div>
+   <button className="quiz-btn" onClick={handleClick}>LET'S PLAY!</button>
+    <h2>Press START and the mic and timer will go off.</h2>
+    <h2>Answer the questions before the timer runs out! </h2>
+    <h2>Key words incease your score, filler words detract</h2>
+    
     </div>
     }
     </div>

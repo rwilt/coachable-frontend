@@ -26,10 +26,6 @@ let Nav = (props) => {
         <NavLink to="/scoreboard" exact>
          <h2>Scoreboard</h2>
         </NavLink>
-
-        <NavLink to="/search" exact>
-            <h2>Search</h2>
-        </NavLink>
    
         <NavLink to="/calendar">
             <h2>Calendar</h2>

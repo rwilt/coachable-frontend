@@ -5,8 +5,8 @@ import Welcome from "./Components/Welcome"
 import Scoreboard from "./Components/Scoreboard"
 import Logout from "./Components/Logout"
 import Profile from "./Components/Profile"
-import Search from "./Components/Search"
 import Calendar from "./Components/Calendar"
+import Home from "./Components/Home"
 import './App.css';
 import {Switch, Route} from 'react-router-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
@@ -67,7 +67,6 @@ fetch("http://localhost:3000/users")
      <Scoreboard gameList={gameList}
      />
      </Route>
-     <Route path="/search" component={Search}/>
      <Route path="/calendar">
        <Calendar calendar={interviewList}/>
     </Route>
@@ -81,7 +80,7 @@ fetch("http://localhost:3000/users")
        />
      </Route> 
 
-    <p>Homepage With Info About the Damn App</p>
+    <Home/>
      {/* <Welcome
      interviews={interviewList}/> */}
     </Switch>
@@ -90,7 +89,7 @@ fetch("http://localhost:3000/users")
       <div className="about">
       {
       clicked ? 
-      <p onClick={handleClick}>illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a>, everything else - <a href={`mailto:${"rosie.wilt@gmail.com"}`}>me</a>!</p>
+      <p onClick={handleClick}>illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a> & <a href="http://www.Vecteezy.com">Vecteezy</a>, Music from <a href="http://PlayonLoop.com">Play On Loop</a>. Everything else - <a href={`mailto:${"rosie.wilt@gmail.com"}`}>me</a>!</p>
       :
       <p onClick={handleClick}>about</p>}
       </div>
