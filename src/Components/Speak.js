@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useInterval} from 'react';
-
+import Confetti from 'react-confetti'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "../App.css";
 
@@ -36,7 +36,7 @@ let Speak = (props) => {
     //finalfinal score
     let [finalScore, setFinalScore] = useState(0)
     let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "sort of", "sorta", "a lot"])
-    
+    let [confetti, setConfetti] = useState(false)
     
   
 
@@ -124,7 +124,7 @@ return resetTranscript
             setSeconds(seconds => seconds - 1);
         
               }, 1000);
-            } if (seconds === 0) {
+            }  if (seconds === 0) {
               clearInterval(interval);          
             //   setGame(false)
               setIsActive(false)
@@ -260,6 +260,20 @@ let questArrMapper = quests.map((q, idx) => {
 
 })
 
+const config = {
+  angle: "58",
+  spread: 360,
+  startVelocity: "73",
+  elementCount: "175",
+  dragFriction: 0.12,
+  duration: "940",
+  stagger: "0",
+  width: "25px",
+  height: "32px",
+  perspective: "439px",
+  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+};
+
 
 return (
   <div className="game-div-2">
@@ -269,8 +283,13 @@ return (
     
     <div className="btn-div">
     <p>{questArrMapper}</p>
-    <button onClick={handleStart}><img src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
-    <br></br>
+    <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
+    
+    {finalScore === 200 ? 
+     <Confetti
+     /> : 
+   null
+    }
     {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
     isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT</button>
     }
@@ -283,6 +302,8 @@ return (
    {seconds === 0 ? <h1>TIME!</h1> : 
     <h1 id="timer" className= { seconds <= 10 ? "warning" : null}>{seconds}</h1>
    }
+
+   
 
     {/* <p>{interimTranscript}</p> */}
 

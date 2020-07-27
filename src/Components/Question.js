@@ -4,12 +4,16 @@ import "../App.css"
 
 let Question = (props) => {
     // [gameHistory, setGame ] = useState([])
-let {content} = props.data
+console.log(props)
+
 return (
+
+
     <div>
-    <h1>{content}</h1>
+    <p>{props.content} - {props.industry} 
+    <br></br><button>edit </button> <button>delete</button> </p>
     </div>
 )
 }
 
-export default History
+export default Question

@@ -19,6 +19,8 @@ let [gameList, setGameList] = useState([])
 let [userInfo, setUserInfo] = useState([])
 let [interviewList, setInterviews] = useState([])
 let [finalScoreArray, setFS] = useState([])
+let [keyPhrases, setKeyPhrases] = useState([])
+let [questionList, setQuestions] = useState([])
 
 useEffect(()=>{
   fetch("http://localhost:3000/users/")
@@ -27,6 +29,8 @@ useEffect(()=>{
     setUserInfo(userPOJO[0])
     setInterviews(userPOJO[0].interviews)
     setGameList(userPOJO[0].games)
+    setKeyPhrases(userPOJO[0].key_phrases)
+    setQuestions(userPOJO[0].questions)
     
   })
 
@@ -71,7 +75,12 @@ fetch("http://localhost:3000/users")
        <Calendar calendar={interviewList}/>
     </Route>
      <Route path="/Profile"> 
-     <Profile profile={userInfo}/>
+     <Profile profile={userInfo}
+     keyPhrases={keyPhrases}
+     setKeyPhrases={setKeyPhrases}
+     questionList={questionList}
+     setQuestions={setQuestions}
+     />
      </Route>
      <Route path="/logout" component={Logout}/>
      <Route path="/home">
