@@ -1,47 +1,51 @@
 import React, {useState, useEffect} from 'react';
 import "../App.css"
 import { checkPropTypes } from 'prop-types';
-
+import CalHeader from "../photos/calendar.png"
+import Event from "./Event"
+import Pencil from '../photos/edit.png'
+import Delete from '../photos/trash.svg'
+import Add from '../photos/plus.svg'
+import AddInterview from './AddInterview'
 
 let Calendar = (props) => {
+let [clicked, setClicked] = useState(false);
 
-console.log(props.calendar[0])
-// const events = [
-// {start: interviewList.simple_date,
-// end: interviewList.simple_date,
-// title: interviewList.title,
-// description: interviewList.note,
-// data: `Interviewer: ${interviewList.interviewer}, Company: ${interviewList.company}`}
-// ]
+let handleAdd = (e) => {
+  setClicked((prevState) => {return !prevState})
+}
 
-    // let mapper = props.calendar.map((cal) => {
+    let mapper = props.calendar.map((cal) => {
         
-    // return cal
-    // })
+    return <Event 
+    key = {cal.id}
+    calInfo = {cal}
+    setInterview={props.setInterviews}/>
+    })
 
     return (
-        <React.Fragment>
-            {props.calendar[0] ?
-            
-          <div className="welcome-div">
-              <h1> Calendar </h1>
-            <ol>
-               
-            <h5>{props.calendar[0].company}</h5>
-            <p>{props.calendar[0].simple_date}</p> 
-            <p>{props.calendar[0].title}</p>        
-            <p>{props.calendar[0].interviewer}</p>
-            <p>{props.calendar[0].note}</p>
-            
-            </ol>
 
-            <button>Add</button>
-            <button>Delete</button>
+          <div className="welcome-div">
+              <h1 className="cal-title">Interviews!</h1>
+            <img className="cal-img" src={CalHeader}/>
+            <div className="cal-div">
+              {mapper}
             </div>
+            {
+            
+            clicked ? 
+            <AddInterview
+            key={Math.floor(Math.random() * 100)}
+            clicked={clicked}
+            setClicked={setClicked}
+            setInterview={props.setInterviews}
+      
+            />
             :
-            null
+              <button onClick={handleAdd} className="icon-btn"><img className="icon" src={Add} alt="Add New Event"/></button>
             }
-        </React.Fragment>
+            </div>
+       
 
     )
     }

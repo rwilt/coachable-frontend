@@ -8,9 +8,11 @@ import Trophy from '../photos/bermuda-219.png'
 let Scoreboard = (props) => {
    console.log(props, "is props")
   let  [gameHistory, setGame ] = useState(props.gameList)
+  let  [finalScores, setFS] = useState(props.gameList.final_score)
   
   
 let gameMapper = props.gameList.sort((a, b) => b.final_score - a.final_score).map((game)=> {
+    
     return <GameHist
     key = {game.id}
     gameInfo = {props.gameList}
@@ -20,10 +22,14 @@ let gameMapper = props.gameList.sort((a, b) => b.final_score - a.final_score).ma
 })
 
 
+
 return (
     <div className="welcome-div">
+        
+        <div className="trophy-div">
+        <h2>Scoreboard</h2>
         <img src={Trophy} className="trophy-pic"/>
-        <h2>Click the score for more info.</h2>
+        </div>
         {gameMapper}
     </div>
 )

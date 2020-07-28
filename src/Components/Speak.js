@@ -2,7 +2,8 @@ import React, {useState, useEffect, useInterval} from 'react';
 import Confetti from 'react-confetti'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "../App.css";
-
+import ReactAudioPlayer from 'react-audio-player';
+import Music from "../photos/POL-staff-roll-short.wav";
 //post score to backend - and the answer to each question
 //post transcript to backend, then clear the string with reset
 let Speak = (props) => {
@@ -24,7 +25,7 @@ let Speak = (props) => {
     //final results - "You said X key words. You used x filler words. etc. "
     let [finalResults, setResult] = useState('')
     //timer logic - how many seconds does the user start with
-    const [seconds, setSeconds] = useState(12);
+    const [seconds, setSeconds] = useState(15);
     //is the game currently in play? 
     const [isActive, setIsActive] = useState(false);
     //word count logic - the key words and how many times each was used
@@ -35,11 +36,11 @@ let Speak = (props) => {
     let [termObj, setTermObj] = useState({})
     //finalfinal score
     let [finalScore, setFinalScore] = useState(0)
-    let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "sort of", "sorta", "a lot"])
+    let [fillerWords, setFillerWords] = useState(["like", "you know", "kinda", "kind of", "really", "um", "I mean", "okay", "probably", "sort of", "sorta", "a lot"])
     let [confetti, setConfetti] = useState(false)
-    
+    const [fillCount, setFillerCount] = useState(0)
   
-
+    console.log(quests.length)
     let handleStart = () => {   
   
         setTimeout(() =>    SpeechRecognition.startListening({continuous:true}), 0) 
@@ -55,8 +56,10 @@ let Speak = (props) => {
    let fillerCount = (str, searchTerms) => {  
     let theScore = 0
     let endScore = 0
+    let count = 0
         str.split(" ").forEach((word) => {
         if (searchTerms.includes(word)){
+          count++
           setScore((prevState) => {return prevState - 10})
           setFinalScore((prevState) => {return prevState - 10})
                 // theScore -= 10
@@ -64,10 +67,10 @@ let Speak = (props) => {
                 // console.log("you said", word)
                 // setFinalScore((prevState) => {return prevState + endScore})
         }
-        // setScore(theScore)  
-            
+        // setScore(theScore) 
+        setFillerCount((prevState) => {return prevState + count})
       })
-
+console.log(finalResults, "results")
     }
 
 
@@ -76,12 +79,13 @@ let Speak = (props) => {
     let countWordTest = (str, searchTerms, tempTerm) => {  
         let theScore = 0
         let endScore = 0
+        let count = 0
             str.split(" ").forEach((word) => {
             console.log(word)
             if (searchTerms.includes(word)){
                     // theScore += 10
                     // endScore  += 10
-
+                    count++
                     setScore((prevState) => {return prevState + 10})
                     setFinalScore((prevState) => {return prevState + 10})
                     // useEffect = () => {
@@ -96,19 +100,18 @@ let Speak = (props) => {
                     // setFinalScore((prevState) => {return prevState + endScore})
             }
             // setScore((prevState) => {return prevState + theScore})  
-                
+            setWordCount((prevState) => {return prevState + count})   
+           
     }) // end of for each
-    // fetch("http://localhost:3000/game_joins", {method: "POST",
-    // headers: {"content-type" : "application/json"},
-    // body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: "hello" })
-    // })
-    // .then(resp => resp.json())
-    // .then((gameJoinPOJO)=>{
-    //     console.log('this is the Game Join POJO')
-    // })
+    fetch("http://localhost:3000/game_joins", {method: "POST",
+    headers: {"content-type" : "application/json"},
+    body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: finalResults })
+    })
+    .then(resp => resp.json())
+    .then((gameJoinPOJO)=>{
+        console.log('this is the Game Join POJO')
+    })
 
- 
-  
 
 return resetTranscript
 }
@@ -133,12 +136,6 @@ return resetTranscript
               fillerCount(finalTranscript, fillerWords)
               countWordTest(finalTranscript, keyPhrase, tempTerm)
               
-              
-        
-              //resetTranscript - this is where i will reset once post.
-            
-              console.log(finalTranscript, "this is final transcript")
-              console.log("final trans is", finalTrans)
             }
             return () => {
             
@@ -153,10 +150,10 @@ return resetTranscript
 
 useEffect(()=> {
     
-fetch('http://localhost:3000/users/')
+fetch('http://localhost:3000/users/11')
 .then(resp => resp.json())
 .then((arrayOfStuff)=>{
-    setQuestions(arrayOfStuff[0].questions)
+    setQuestions(arrayOfStuff.questions)
 })
 
 }, [])
@@ -166,10 +163,10 @@ fetch('http://localhost:3000/users/')
 
 
 useEffect(()=> {
-    fetch('http://localhost:3000/users')
+    fetch('http://localhost:3000/users/11')
     .then(resp => resp.json())
     .then((arrayOfStuff)=>{
-        setKeyPhrases(arrayOfStuff[0].key_phrases[0].phrases)
+        setKeyPhrases(arrayOfStuff.key_phrases[0].phrases)
     })
     
     }, [])
@@ -220,11 +217,11 @@ let handleStop = () => {
 let nextQuestion = (e) => {
 e.preventDefault()
 resetTranscript()
-setSeconds(5)
+setSeconds(15)
 setScore(0)
 setQIdx((prevState) => { return prevState + 1})
 console.log(questIdx)
-if (questIdx >= 4) {
+if (questIdx >= 6) {
 endGame()
 }
 // setIsActive(false)
@@ -238,6 +235,9 @@ if (!isActive){
   console.log("hey")
   console.log("the  game id is" , props.gameId) 
 }
+//this keeps breaking - it is WAY overcounting the words.
+// console.log(`You used ${fillCount} filler words and ${wordCount} key phrases.`) 
+
   fetch(`http://localhost:3000/games/${props.gameId}`, {
   method: "PATCH",
   headers: {
@@ -285,11 +285,26 @@ return (
     <p>{questArrMapper}</p>
     <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
     
-    {finalScore === 200 ? 
+    {finalScore >= 120 ? 
      <Confetti
-     /> : 
+     numberOfPieces={200}
+     colors={['#2196f3', '#03a9f4', '#ffc107','#ff5722']}
+     /> 
+     : 
    null
     }
+
+    {finalScore >= 100 ?
+    <ReactAudioPlayer
+    volume= "5"
+    className="audio"
+    src={Music}
+    autoPlay
+    loop 
+    controls />
+    : null 
+    }
+
     {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
     isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT</button>
     }
@@ -322,7 +337,7 @@ return (
     </div>
    
 
-    <div clasName="clm-2">
+    <div className="clm-2">
     <h2 id="key-phrase">KEY PHRASES:</h2>
     <h3>{keyPhrase.map((p)=> {
       if (keyPhrase.indexOf(p) < keyPhrase.length -1){
@@ -347,7 +362,7 @@ return (
     })
     }</h3>
 
-    {questIdx  >= 4 ? <p>GAME OVER!</p> : <p>Game in Progress</p>}
+    {questIdx  > 6 ? <p>GAME OVER!</p> : <p>Game in Progress</p>}
     </div>
    
     </div>

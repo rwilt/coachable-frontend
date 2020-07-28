@@ -19,7 +19,7 @@ return(
  {/* <Calendar/> */}
 <img id="man" src={Man} alt="cartoon brain celebrating"/> 
 <p id="sub">You are on a 2 day streak! Let's train to keep it going.</p>
-<p id="sub">You have {props.interviews.length} upcoming interview. Good luck!</p>
+<p id="sub">You have {props.interviews.length} upcoming interviews. Good luck!</p>
 </div>
 )
 
