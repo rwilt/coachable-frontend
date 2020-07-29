@@ -5,6 +5,7 @@ import present from "../photos/presentation1.png";
 import ReactAudioPlayer from 'react-audio-player';
 import Music from "../photos/POL-follow-me-short.wav";
 import Interview from "../photos/shakinghands.png"
+import ParticlesBg from 'particles-bg';
 
 let Train = (props) => {
 console.log(props.currentGame, "is current game")
@@ -28,8 +29,25 @@ let handleClick = (e) => {
         )
 }
 
+let config = {
+    // num: [4, 7],
+    // rps: 0.1,
+    // radius: [5, 40],
+    life: [1.5, 3],
+    v: [2, 3],
+    tha: [-50, 50],
+    alpha: [0.6, 0],
+    scale: [.1, 0.2],
+    body: Interview,
+    position: "all",
+    //color: ["random", "#ff0000"],
+    cross: "dead",
+    random: 10
+  };
+
 return (
     <div className="welcome-div">
+        
     {startTrain ? 
     
    <GameStart
@@ -37,6 +55,7 @@ return (
    
     :
     <div className="game-div">
+        
  <ReactAudioPlayer
   volume= "5"
   className="audio"
@@ -46,7 +65,9 @@ return (
   controls />
     
     <div id="color">
+       
    <img className="trainer" src={Interview}/>
+
    </div>
    <button className="quiz-btn" onClick={handleClick}>LET'S PLAY!</button>
     <h2>Press START and the mic and timer will go off.</h2>
@@ -55,6 +76,7 @@ return (
     
     </div>
     }
+    
     </div>
 )
 }

@@ -4,6 +4,8 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import "../App.css";
 import ReactAudioPlayer from 'react-audio-player';
 import Music from "../photos/POL-staff-roll-short.wav";
+
+import  NewConfetti from 'canvas-confetti';
 //post score to backend - and the answer to each question
 //post transcript to backend, then clear the string with reset
 let Speak = (props) => {
@@ -25,7 +27,7 @@ let Speak = (props) => {
     //final results - "You said X key words. You used x filler words. etc. "
     let [finalResults, setResult] = useState('')
     //timer logic - how many seconds does the user start with
-    const [seconds, setSeconds] = useState(15);
+    const [seconds, setSeconds] = useState(20);
     //is the game currently in play? 
     const [isActive, setIsActive] = useState(false);
     //word count logic - the key words and how many times each was used
@@ -217,11 +219,11 @@ let handleStop = () => {
 let nextQuestion = (e) => {
 e.preventDefault()
 resetTranscript()
-setSeconds(15)
+setSeconds(20)
 setScore(0)
 setQIdx((prevState) => { return prevState + 1})
 console.log(questIdx)
-if (questIdx >= 6) {
+if (questIdx >= quests.length) {
 endGame()
 }
 // setIsActive(false)
@@ -275,6 +277,8 @@ const config = {
 };
 
 
+
+
 return (
   <div className="game-div-2">
   <div className="speak-div">
@@ -285,16 +289,17 @@ return (
     <p>{questArrMapper}</p>
     <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
     
-    {finalScore >= 120 ? 
+    {finalScore >= 220 ? 
      <Confetti
      numberOfPieces={200}
      colors={['#2196f3', '#03a9f4', '#ffc107','#ff5722']}
      /> 
+
      : 
    null
     }
 
-    {finalScore >= 100 ?
+    {finalScore >= 220 ?
     <ReactAudioPlayer
     volume= "5"
     className="audio"
