@@ -1,5 +1,5 @@
 <h1>Coachable</h1>
-<h4>interview for fun, get hired for real!</h4>
+<h4>Interview for fun, get hired for real!</h4>
 
 <p>Coachable is a fun and easy way to become a better interviewer, faster. Answer questions and race the clock while being scored on what you say (or don't say!).</p> 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

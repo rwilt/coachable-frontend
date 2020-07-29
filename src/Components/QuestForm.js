@@ -15,18 +15,19 @@ const handleInput = (e) => {
 
 
 const submitChanges = (e) => {
-    // e.preventDefault()
-    // fetch(`http://localhost:3000/questions`, {method: "POST",
-    // headers: {"Content-Type": "application/json"},  
-    // body: JSON.stringify({
+    e.preventDefault()
+    fetch(`http://localhost:3000/questions`, {method: "POST",
+    headers: {"Content-Type": "application/json"},  
+    body: JSON.stringify({
+      content: content, industry: industry
+    })
+    })
+    .then(resp => resp.json())
+    .then((newQuest) => {
 
-    // })
-    // })
-    // .then(resp => resp.json())
-    // .then((newQuest) => {
-
-    // })
-    // props.setClick(false)
+    })
+    props.setClick(false)
+    props.setQuestions((prevState) => {return [...prevState,newQuest]})
 }
 
 

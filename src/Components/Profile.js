@@ -78,7 +78,8 @@ return (
     <h4>Your Questions</h4>
     <button className="icon-btn" onClick={handleQuestClick}><img className="icon" src={Add}/></button>
     {clicked ? 
-    <QuestForm />
+    <QuestForm 
+    setQuestions={props.setQuestions}/>
     : null}
     {questionMapper} 
   
