@@ -6,6 +6,7 @@ import QuestForm from "./QuestForm"
 import Pencil from '../photos/edit.png'
 import Delete from '../photos/trash.svg'
 import Add from '../photos/plus.svg'
+import KeyPhrase from './KeyPhrase'
 
 let Profile = (props) => {
 
@@ -26,9 +27,12 @@ let handleQuestClick = (e) => {
 
 //key phrases should become components
 let phraseMapper = props.keyPhrases.map((p)=>{
-    console.log(p.phrases)
-
-    return p.phrases.join(" ")
+    console.log(p)
+  return  <KeyPhrase
+    key={p.id}
+    phrase={p.phrases}
+    />
+    // return p.phrases.join(" ")
 })
 
 
@@ -39,6 +43,7 @@ let questionMapper = props.questionList.map((e)=>{
     content = {e.content}
     industry = {e.industry}
     id={e.id}
+    setQuestions={props.setQuestions}
     />
 // return <React.Fragment>{e.content} <br/></React.Fragment>
 })
@@ -68,18 +73,19 @@ return (
   
 
     <h4>Game Settings</h4>
-    <p>Your Key Phrases</p>
+    <h4>Key Phrases</h4>
     <p id="phrases">{phraseMapper}</p>
     <button className="icon-btn"><img className="icon" src={Add}/></button> 
     <button className="icon-btn"><img className="icon"src={Pencil}></img></button> 
     <button className="icon-btn"><img className="icon" src={Delete}/></button> 
     <br></br>
 
-    <h4>Your Questions</h4>
+    <h4>Questions</h4>
     <button className="icon-btn" onClick={handleQuestClick}><img className="icon" src={Add}/></button>
     {clicked ? 
     <QuestForm 
-    setQuestions={props.setQuestions}/>
+    setQuestions={props.setQuestions}
+    setClick= {setClick}/>
     : null}
     {questionMapper} 
   

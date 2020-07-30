@@ -223,8 +223,10 @@ setSeconds(20)
 setScore(0)
 setQIdx((prevState) => { return prevState + 1})
 console.log(questIdx)
-if (questIdx >= quests.length) {
+if (questIdx > quests.length ) {
 endGame()
+
+
 }
 // setIsActive(false)
 // setGame(false)
@@ -262,21 +264,10 @@ let questArrMapper = quests.map((q, idx) => {
 
 })
 
-const config = {
-  angle: "58",
-  spread: 360,
-  startVelocity: "73",
-  elementCount: "175",
-  dragFriction: 0.12,
-  duration: "940",
-  stagger: "0",
-  width: "25px",
-  height: "32px",
-  perspective: "439px",
-  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-};
 
-
+let randomInt = (num1, num2) =>  {
+  return Math.floor(num1 + (Math.random() * (( num2 - num1) + 1)))
+}
 
 
 return (
@@ -289,17 +280,42 @@ return (
     <p>{questArrMapper}</p>
     <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
     
-    {finalScore >= 220 ? 
+    {finalScore  === 0 ? 
      <Confetti
+     drawShape={ (ctx) => {
+        let numPoints =  randomInt(4, 6)
+        numPoints = numPoints
+        let outerRadius = 10
+        let innerRadius = 10 / 2
+        ctx.beginPath()
+        ctx.moveTo(0, 0 - 10)
+      
+        for(let n = 1; n < numPoints * 2; n++) {
+          let radius = n % 2 === 0 ? 10 : 5
+          let x = radius * Math.sin((n * Math.PI) / numPoints)
+          let y = -1 * radius * Math.cos((n * Math.PI) / numPoints)
+          ctx.lineTo(x, y)
+        }
+        ctx.fill()
+        ctx.closePath()
+      }}
+     friction={0.99}
+     gravity={0.1}
+     height={667}
+     initialVelocityX ={4}
+     initialVelocityY={10}
+     opacity ={1}
+     recycle={true}
+     run={true}
      numberOfPieces={200}
-     colors={['#2196f3', '#03a9f4', '#ffc107','#ff5722']}
+     colors={['#2196f3', '#03a9f4', '#ffc107','#ff5722', '#7ad1f5']}
      /> 
 
      : 
    null
     }
 
-    {finalScore >= 220 ?
+    {finalScore >= 210 ?
     <ReactAudioPlayer
     volume= "5"
     className="audio"

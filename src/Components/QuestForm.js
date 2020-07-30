@@ -14,20 +14,22 @@ const handleInput = (e) => {
   }
 
 
+
+
 const submitChanges = (e) => {
     e.preventDefault()
     fetch(`http://localhost:3000/questions`, {method: "POST",
     headers: {"Content-Type": "application/json"},  
     body: JSON.stringify({
-      content: content, industry: industry
+      content: content, industry: industry, user_id: 11
     })
     })
     .then(resp => resp.json())
     .then((newQuest) => {
-
+      props.setQuestions((prevState) => {return [...prevState,newQuest]})
     })
     props.setClick(false)
-    props.setQuestions((prevState) => {return [...prevState,newQuest]})
+    
 }
 
 
