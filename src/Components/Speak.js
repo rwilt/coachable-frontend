@@ -280,7 +280,7 @@ return (
     <p>{questArrMapper}</p>
     <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
     
-    {finalScore  === 0 ? 
+    {finalScore  >= 210 ? 
      <Confetti
      drawShape={ (ctx) => {
         let numPoints =  randomInt(4, 6)

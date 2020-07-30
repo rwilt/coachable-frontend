@@ -20,11 +20,11 @@ let handleDelete = (e) => {
 
     return (
         <div className="calendar-div">
-            <p className="event-txt">{props.calInfo.title}<br/>
+            <p className="event-txt"><b>{props.calInfo.title}</b><br/>
             {props.calInfo.company}<br/>
-            {props.calInfo.simple_date} - 4PM PT <br/>
-            Interviewer: {props.calInfo.interviewer} <br/>
-            Note: {props.calInfo.note} </p>
+            {props.calInfo.simple_date} - {Math.floor(Math.random() * 7) + 1} PM <br/>
+            <b>Interviewer:</b> {props.calInfo.interviewer} <br/>
+            <b>Note:</b> {props.calInfo.note} </p>
             <button className="icon-btn"><img className="icon" src={Pencil}/></button><button className="icon-btn"><img className="icon" onClick={handleDelete} src={Delete}/></button>
         </div>
 

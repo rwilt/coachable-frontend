@@ -28,7 +28,7 @@ return (
 
 
     <div className="key-phrase">
-    <p>{props.phrase.join(", ")} </p>
+    <p id="phraser">{props.phrase.join(", ")} </p>
     </div>
 )
 }

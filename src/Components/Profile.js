@@ -72,7 +72,7 @@ return (
    
   
 
-    <h4>Game Settings</h4>
+    <h4 className="game-st">Game Settings</h4>
     <h4>Key Phrases</h4>
     <p id="phrases">{phraseMapper}</p>
     <button className="icon-btn"><img className="icon" src={Add}/></button> 
@@ -81,6 +81,7 @@ return (
     <br></br>
 
     <h4>Questions</h4>
+    <div id="quester">
     <button className="icon-btn" onClick={handleQuestClick}><img className="icon" src={Add}/></button>
     {clicked ? 
     <QuestForm 
@@ -88,7 +89,7 @@ return (
     setClick= {setClick}/>
     : null}
     {questionMapper} 
-  
+    </div>
     </div>
 )
 }

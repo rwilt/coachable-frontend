@@ -99,7 +99,7 @@ const config = {
              isClicked ? <p id="score" onClick={handleClick}> 
                
             {props.final_score <= 20 ? <React.Fragment><img className="shake-horizontal" src={SadJob}/> <br/> </React.Fragment>  : null }
-            {props.final_score <= 20 ? "Ouch! Training time!" : null }
+            {props.final_score <= 20 ? "Ouch - Training time!" : null }
             {props.final_score <= 50 && props.final_score >= 21 ? "Showing improvement, but needs work." : null}
             {props.final_score <= 80 && props.final_score >= 51 ? "Nice job - you're well on your way!" :  null }
             {props.final_score <= 110 && props.final_score >= 81 ?  "You're almost an interview master! Keep it up!" : null}
