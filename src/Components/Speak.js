@@ -3,6 +3,7 @@ import Confetti from 'react-confetti'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "../App.css";
 import ReactAudioPlayer from 'react-audio-player';
+import ReactPlayer from 'react-player'
 import Music from "../photos/POL-staff-roll-short.wav";
 
 import  NewConfetti from 'canvas-confetti';
@@ -280,7 +281,7 @@ return (
     <p>{questArrMapper}</p>
     <button onClick={handleStart}><img className="mic" src="https://img.icons8.com/ios-filled/64/000000/microphone.png"/></button>
     
-    {finalScore  >= 210 ? 
+    {finalScore  >= 110 ? 
      <Confetti
      drawShape={ (ctx) => {
         let numPoints =  randomInt(4, 6)
@@ -314,17 +315,18 @@ return (
      : 
    null
     }
-
+{/* 
     {finalScore >= 210 ?
+ 
     <ReactAudioPlayer
-    volume= "5"
+    volume= {0}
     className="audio"
     src={Music}
-    autoPlay
+    autoPlay={false}
     loop 
     controls />
     : null 
-    }
+    } */}
 
     {gameOver ? <p>Go to the Scoreboard to view your results! </p> :  
     isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT</button>

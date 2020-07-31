@@ -16,17 +16,17 @@ let handleClick = (e) => {
     
     setStart((prevState) => {return !prevState})
 
-    // fetch("http://localhost:3000/games", {method:
-    //     "POST", 
-    //     headers: {"Content-Type": "application/JSON"},
-    //     body: JSON.stringify( {user_id: 11})    
-    //     }
-    //     ).then(resp => resp.json())
-    //     .then((currentGame)=>{
-    //         console.log(currentGame)
-    //         setCurrentGame(currentGame.id)
-    //     }
-    //     )
+    fetch("http://localhost:3000/games", {method:
+        "POST", 
+        headers: {"Content-Type": "application/JSON"},
+        body: JSON.stringify( {user_id: 11})    
+        }
+        ).then(resp => resp.json())
+        .then((currentGame)=>{
+            console.log(currentGame)
+            setCurrentGame(currentGame.id)
+        }
+        )
 }
 
 
@@ -41,7 +41,7 @@ return (
    
     :
     <div className="game-div">
-        
+{/*         
  <ReactAudioPlayer
   volume= "5"
   className="audio"
@@ -49,7 +49,7 @@ return (
   autoPlay
   loop 
   controls />
-    
+     */}
     <div id="color">
        
    <img className="trainer" src={Interview}/>

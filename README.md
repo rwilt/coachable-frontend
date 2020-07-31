@@ -1,72 +1,22 @@
 <h1>Coachable</h1>
 <h4>Interview for fun, get hired for real!</h4>
 
-<p>Coachable is a fun and easy way to become a better interviewer, faster. Answer questions and race the clock while being scored on what you say (or don't say!).</p> 
-<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>Coachable is a fun and easy way to become a better interviewee, faster. Answer questions and race the clock while being scored on what you say (or don't say!). Enter questions from previous interviews to train, and see how your results stack up on the scoreboard.</p> 
 
-## Available Scripts
 
-In the project directory, you can run:
+<h2>About this Project</h2>
 
-### `npm start`
+<p>Coachable is built with a React frontend and Rails backend and PostgreSQL for database management. It uses Web Speech API for voice recognition and voice-to-text, along with React Confetti component with some custom Canvas. </p>
+<p>illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a> & <a href="http://www.Vecteezy.com">Vecteezy</a>, Music from <a href="http://PlayonLoop.com">Play On Loop</a>. Icons made by <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols">Prosymbols</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>. Everything else - <a href={`mailto:${"rosie.wilt@gmail.com"}?subject=Great%20project.%20Let's%20talk!&body=Hey Rosie!%0D%0A%0D%0AI loved your project and I'd love to chat with you about it and/or Buffy the Vampire Slayer. I think Spike and Buffy were meant to be, how about you?`}>me</a>!</p> 
+      
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2>Installation</h2>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+<h2>How to Play</h2>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h2>Screenshots</h2>
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify -->
+<h2>Project Goals<h2>
+<h2>Known Issues</h2>
