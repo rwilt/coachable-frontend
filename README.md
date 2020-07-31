@@ -6,8 +6,8 @@
 
 <h2>About this Project</h2>
 
-<p>Coachable is built with a React frontend and Rails backend and PostgreSQL for database management. It uses Web Speech API for voice recognition and voice-to-text, along with React Confetti component with some custom Canvas. </p>
-<p>illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a> & <a href="http://www.Vecteezy.com">Vecteezy</a>, Music from <a href="http://PlayonLoop.com">Play On Loop</a>. Icons made by <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols">Prosymbols</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>. Everything else - [me](mailto:rosie.wilt@gmail.com)!</p> 
+Coachable is built with a React frontend and Rails backend and PostgreSQL for database management. It uses Web Speech API for voice recognition and voice-to-text, along with React Confetti component with some custom Canvas. </p>
+illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a> & <a href="http://www.Vecteezy.com">Vecteezy</a>, Music from <a href="http://PlayonLoop.com">Play On Loop</a>. Icons made by <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols">Prosymbols</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>. Everything else - [me](mailto:rosie.wilt@gmail.com)! 
       
 
 <h2>Installation</h2>
