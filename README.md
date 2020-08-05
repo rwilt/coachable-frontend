@@ -14,7 +14,7 @@ illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a>
 <ul>
   <li>Fork and clone both repos</li>
   <li>Navigate to this directory</li>
-  <li>'npm install && npm start' on the frontend, 'rails db:seed' on the backend</li>
+  <li>'npm install && npm start' on the frontend, 'rails db:seed && rails s'  on the backend</li>
 </ul>
 
 
