@@ -25,7 +25,7 @@ illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a>
 </ul>
 
 
-<h2>Screenshots & Demo</h2>
+<h2>Screenshots</h2>
 
 <br>
 <img src="./src/photos/demo1.png" alt="screenshot of project" height=300px>
@@ -34,4 +34,6 @@ illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a>
 
 <img src="./src/photos/demo3.png" alt="screenshot of project" height=300px>
 
-[![my demo]("./src/photos/video1.png")](https://https://www.youtube.com/watch?v=R-Js3u5uoEE)
+<h2>Demo</h2>
+
+https://https://www.youtube.com/watch?v=R-Js3u5uoEE
