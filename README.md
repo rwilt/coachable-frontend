@@ -28,10 +28,10 @@ illustrations by <a href="https://dribbble.com/thierryfousse">Thierry Fousse</a>
 <h2>Screenshots & Demo</h2>
 
 <br>
-<img src="./photos/demo1.png" alt="screenshot of project" height=300px>
+<img src="./src/photos/demo1.png" alt="screenshot of project" height=300px>
 
-<img src="./photos/demo2.png" alt="screenshot of project" height=300px>
+<img src="./src/photos/demo2.png" alt="screenshot of project" height=300px>
 
-<img src="./photos/demo3.png" alt="screenshot of project" height=300px>
+<img src="./src/photos/demo3.png" alt="screenshot of project" height=300px>
 
 [![my demo]("./photos/video1.png")](https://https://www.youtube.com/watch?v=R-Js3u5uoEE)
