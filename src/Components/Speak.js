@@ -65,12 +65,9 @@ let Speak = (props) => {
           count++
           setScore((prevState) => {return prevState - 10})
           setFinalScore((prevState) => {return prevState - 10})
-                // theScore -= 10
-                // endScore  -= 10
-                // console.log("you said", word)
-                // setFinalScore((prevState) => {return prevState + endScore})
+   
         }
-        // setScore(theScore) 
+  
         setFillerCount((prevState) => {return prevState + count})
       })
 console.log(finalResults, "results")
@@ -86,11 +83,11 @@ console.log(finalResults, "results")
             str.split(" ").forEach((word) => {
             console.log(word)
             if (searchTerms.includes(word)){
-                    // theScore += 10
-                    // endScore  += 10
+          
                     count++
                     setScore((prevState) => {return prevState + 10})
                     setFinalScore((prevState) => {return prevState + 10})
+
                     // useEffect = () => {
                     // fetch("http://localhost:3000/game_joins", {method: "POST",
                     // headers: {"Content-Type" : "application/json"},
@@ -102,10 +99,10 @@ console.log(finalResults, "results")
                     // .then(setScore(0))
                     // setFinalScore((prevState) => {return prevState + endScore})
             }
-            // setScore((prevState) => {return prevState + theScore})  
+       
             setWordCount((prevState) => {return prevState + count})   
            
-    }) // end of for each
+    }) 
     fetch("http://localhost:3000/game_joins", {method: "POST",
     headers: {"content-type" : "application/json"},
     body: JSON.stringify({game_id: props.gameId, score: score, answer: finalTrans, question_id: quests[questIdx].id, result_summary: finalResults })
@@ -132,7 +129,7 @@ return resetTranscript
               }, 1000);
             }  if (seconds === 0) {
               clearInterval(interval);          
-            //   setGame(false)
+
               setIsActive(false)
               SpeechRecognition.stopListening()
               setTranscript(finalTranscript)
@@ -141,8 +138,7 @@ return resetTranscript
               
             }
             return () => {
-            
-                // clearInterval(wordCounter)
+       
                 clearInterval(interval)
                 
             };
@@ -178,44 +174,11 @@ useEffect(()=> {
  
 
  
-// console.log(quests, "questions")
-// console.log(keyPhrase, "phrases")
-
-//OLD VERSION
-// useEffect( ()=> {
-// console.log(isActive, "this is before start")
-//     if (isActive) {  
-//         console.log(isActive, "this is after start")  
-//        setInterval(countWordTest(finalTranscript, keyPhrase),0)
-//        setInterval(fillerCount,0)     
-//     }
-//     },[])
-
-
-
-//somewhere else, stop 
 
  
 if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
   return null
 }
-
-
-     
-
-      
-//might not need stop button.
-let handleStop = () => {
-    SpeechRecognition.stopListening()
-    // SpeechRecognition.startListening({continuous:false})
-    // SpeechRecognition.stopListening()
-    //add this to the array. 
-    console.log(finalTranscript, "what you said")
-    // setGame(true)
-    // setIsActive(false)
-    // setSeconds(20)
-}
-
 
 let nextQuestion = (e) => {
 e.preventDefault()
@@ -229,8 +192,7 @@ endGame()
 
 
 }
-// setIsActive(false)
-// setGame(false)
+
 }
 
 let endGame = () => {
@@ -240,8 +202,6 @@ if (!isActive){
   console.log("hey")
   console.log("the  game id is" , props.gameId) 
 }
-//this keeps breaking - it is WAY overcounting the words.
-// console.log(`You used ${fillCount} filler words and ${wordCount} key phrases.`) 
 
   fetch(`http://localhost:3000/games/${props.gameId}`, {
   method: "PATCH",
@@ -274,7 +234,7 @@ let randomInt = (num1, num2) =>  {
 return (
   <div className="game-div-2">
   <div className="speak-div">
-      {/* dont show first question until start is clicked */}
+    
     <div className="clm-1">
     
     <div className="btn-div">
@@ -315,7 +275,7 @@ return (
      : 
    null
     }
-{/* 
+{/* removed music for live demo
     {finalScore >= 210 ?
  
     <ReactAudioPlayer
@@ -332,9 +292,7 @@ return (
     isActive  ?  <button onClick={nextQuestion} disabled>NEXT QUESTION</button> : <button onClick={nextQuestion}>NEXT</button>
     }
     </div>
-    {/* <button onClick={handleStop}>Stop</button>
-    <button onClick={resetTranscript}>Reset</button>
-   */}
+
     <p>{finalTranscript}</p>
    
    {seconds === 0 ? <h1>TIME!</h1> : 
