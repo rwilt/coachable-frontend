@@ -129,7 +129,6 @@ return resetTranscript
               }, 1000);
             }  if (seconds === 0) {
               clearInterval(interval);          
-
               setIsActive(false)
               SpeechRecognition.stopListening()
               setTranscript(finalTranscript)
